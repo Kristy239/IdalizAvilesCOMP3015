@@ -1,0 +1,47 @@
+To do:
+1 - Set up GitHub repository
+2 - Study professor's PDFs
+1 - Set up Model View Controller design pattern in Spring Boot
+1 - Set up website portion to enable creation of templates
+1 - Set up Bootstrap
+1 - Sketch wireframe design for screen 1 (Navigation bar) on Mobile and Desktop
+1 - Sketch wireframe design for screen 2 (Home page) on Mobile and Desktop
+1 - Sketch wireframe design for screen 3 (Results page) on Mobile and Desktop
+1 - Sketch wireframe design for screen 4 (Advert Details page) on Mobile and Desktop
+1 - Sketch wireframe design for screen 5 (Create Advert page) on Mobile and Desktop
+1 - Sketch wireframe design for screen 6 (Login page) on Mobile and Desktop
+1 - Sketch wireframe design for screen 7 (User Account page) on Mobile and Desktop
+1 - Sketch wireframe design for screen 8 (Register page) on Mobile and Desktop
+2 - Brainstorm workflows
+2 - Implement screen 1 (Navigation bar) HTML template in ThymeLeaf
+1 - Implement screen 2 (Home page) HTML template in ThymeLeaf
+3 - Implement screen 3 (Results page) HTML template in ThymeLeaf
+2 - Implement screen 4 (Advert Details page) HTML template in ThymeLeaf
+1 - Implement screen 5 (Create Advert page) HTML template in ThymeLeaf
+1 - Implement screen 6 (Login page) HTML template in ThymeLeaf
+3 - Implement screen 7 (User Account page) HTML template in ThymeLeaf
+1 - Implement screen 8 (Register page) HTML template in ThymeLeaf
+4 - Add decorations to ThymeLeaf HTML templates using Bootstrap
+2 - Review Database design methods
+4 - Design Database using ERD (Entity Relationship Diagram) using draw.io
+2 - Implement MySQL Database schemas
+2 - Connect MySQL Database with ORM
+1 - Implement controller for screen 1 (Navigation bar) using SpringBoot
+1 - Implement controller for screen 2 (Home page) using SpringBoot
+1 - Implement controller for screen 3 (Results page) using SpringBoot
+1 - Implement controller for screen 4 (Advert Details page) using SpringBoot
+1 - Implement controller for screen 5 (Create Advert page) using SpringBoot
+1 - Implement controller for screen 6 (Login page) using SpringBoot
+1 - Implement controller for screen 7 (User Account page) using SpringBoot
+1 - Implement controller for screen 8 (Register page) using SpringBoot
+2 - Implement user authentication model
+2 - Implement registration model
+2 - Implement advert model (use enum for categories)
+2 - Implement CRUD operations for REST API
+2 - Populate DB with dummy data to test UI
+4 - DEBUG
+
+Doing:
+
+
+Done:
