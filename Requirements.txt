@@ -76,7 +76,7 @@ Requirements:
 5.8.3.2 Last names
 5.8.3.3 Date of Birth
 5.8.3.3.1 Date of birth is only valid for users 18 years or older
-5.8.3.4 User name
+5.8.3.4 Username
 5.8.3.4.1 Username must not have spaces
 5.8.3.4.2 Username must not already exist
 5.8.3.5 Password

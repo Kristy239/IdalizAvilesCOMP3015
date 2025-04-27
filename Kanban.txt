@@ -1,17 +1,8 @@
 To do:
-1 - Set up GitHub repository
 2 - Study professor's PDFs
 1 - Set up Model View Controller design pattern in Spring Boot
 1 - Set up website portion to enable creation of templates
 1 - Set up Bootstrap
-1 - Sketch wireframe design for screen 1 (Navigation bar) on Mobile and Desktop
-1 - Sketch wireframe design for screen 2 (Home page) on Mobile and Desktop
-1 - Sketch wireframe design for screen 3 (Results page) on Mobile and Desktop
-1 - Sketch wireframe design for screen 4 (Advert Details page) on Mobile and Desktop
-1 - Sketch wireframe design for screen 5 (Create Advert page) on Mobile and Desktop
-1 - Sketch wireframe design for screen 6 (Login page) on Mobile and Desktop
-1 - Sketch wireframe design for screen 7 (User Account page) on Mobile and Desktop
-1 - Sketch wireframe design for screen 8 (Register page) on Mobile and Desktop
 2 - Brainstorm workflows
 2 - Implement screen 1 (Navigation bar) HTML template in ThymeLeaf
 1 - Implement screen 2 (Home page) HTML template in ThymeLeaf
@@ -45,3 +36,12 @@ Doing:
 
 
 Done:
+1 - Idaliz - Sketch wireframe design for screen 1 (Navigation bar) on Desktop
+1 - Idaliz - Sketch wireframe design for screen 2 (Home page) on Desktop
+1 - Idaliz - Sketch wireframe design for screen 3 (Results page) on Desktop
+1 - Idaliz - Sketch wireframe design for screen 4 (Advert Details page) on Desktop
+1 - Idaliz - Sketch wireframe design for screen 5 (Create Advert page) on Desktop
+1 - Idaliz - Sketch wireframe design for screen 6 (Login page) on Desktop
+1 - Idaliz - Sketch wireframe design for screen 7 (User Account page) on Desktop
+1 - Idaliz - Sketch wireframe design for screen 8 (Register page) on Desktop
+1 - Marcos - Set up GitHub repository

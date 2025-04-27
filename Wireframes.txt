@@ -1,0 +1,6 @@
+https://www.template.net/graphic-design/wireframe-sizes
+
+Dimensions per device (Pixels and Points)
+Desktop   1024 px ×  768 px   768 pt × 576 pt
+Tablet     768 px × 1024 px   576 pt × 768 pt
+Mobile     320 px ×  480 px   240 pt × 360 pt
