@@ -429,7 +429,7 @@
         <mxCell id="pnJpJJiO39RtWvCnRvAp-0" />
         <mxCell id="pnJpJJiO39RtWvCnRvAp-1" parent="pnJpJJiO39RtWvCnRvAp-0" />
         <mxCell id="pnJpJJiO39RtWvCnRvAp-2" value="" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.containers.browserWindow;rSize=0;strokeColor=light-dark(#33dbc6, #a0bcd2);strokeColor2=#008cff;strokeColor3=#c4c4c4;mainText=,;recursiveResize=0;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;fillColor=light-dark(#d9e1e8, #39454e);labelBorderColor=none;textShadow=0;gradientColor=none;fontColor=default;labelBackgroundColor=none;" vertex="1" parent="pnJpJJiO39RtWvCnRvAp-1">
-          <mxGeometry x="30" y="70" width="770" height="576" as="geometry" />
+          <mxGeometry x="120" y="60" width="770" height="576" as="geometry" />
         </mxCell>
         <mxCell id="pnJpJJiO39RtWvCnRvAp-3" value="" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.containers.anchor;fontSize=17;fontColor=#666666;align=left;whiteSpace=wrap;" vertex="1" parent="pnJpJJiO39RtWvCnRvAp-2">
           <mxGeometry x="60" y="12" width="110" height="26" as="geometry" />

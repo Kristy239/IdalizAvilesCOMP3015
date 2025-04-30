@@ -14,7 +14,6 @@ To do:
 1 - Implement screen 8 (Register page) HTML template in ThymeLeaf
 4 - Add decorations to ThymeLeaf HTML templates using Bootstrap
 2 - Review Database design methods
-4 - Design Database using ERD (Entity Relationship Diagram) using draw.io
 2 - Implement MySQL Database schemas
 2 - Connect MySQL Database with ORM
 1 - Implement controller for screen 1 (Navigation bar) using SpringBoot
@@ -45,3 +44,4 @@ Done:
 1 - Idaliz - Sketch wireframe design for screen 7 (User Account page) on Desktop
 1 - Idaliz - Sketch wireframe design for screen 8 (Register page) on Desktop
 1 - Marcos - Set up GitHub repository
+4 - Both - Design Database using ERD (Entity Relationship Diagram) using draw.io
