@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>MANA - Login</title>
+</head>
+
+<body>
+	<h1>Login Page</h1>
+	<p th:if="${param.error}">
+		Ivalid username or password
+	</p>
+	<div sec:authorize="isAuthenticated()">
+		This content is only shown to authenticated users <br />
+		Logged User: <span sec:authentication="name"></span>
+	</div>
+	<form th:action="@{/login}" method="post">
+		<label for="username">Username</label> <br />
+		<input name="username" type="text" autofocus required /> <br />
+
+		<label for="password">Password</label> <br />
+		<input name="password" type="password" required /> <br />
+
+		<a th:text="Cancel" th:href="@{/}"></a> <br />
+		<input type="submit" text="Log in" /> <br />
+	</form>
+</body>
+
+</html>

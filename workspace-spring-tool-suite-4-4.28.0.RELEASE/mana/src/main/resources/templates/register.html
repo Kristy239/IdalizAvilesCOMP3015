@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>MANA - Register</title>
+</head>
+
+<body>
+	<form action="#" th:action="@{/register}" th:object="${newUser}" th:method="post">
+		<label for="username">Username</label> <br />
+		<input name="username" type="text" th:field="*{username}" required /> <br />
+
+		<label for="name">Name</label> <br />
+		<input type="text" th:field="*{name}" required /> <br />
+
+		<label for="lastName">Last Name</label> <br />
+		<input type="text" th:field="*{lastName}" required /> <br />
+
+		<label for="dateOfBirth">Date of Birth</label> <br />
+		<input type="date" th:field="*{dateOfBirth}" required /> <br />
+
+		<label for="password">Password</label> <br />
+		<input type="password" th:field="*{password}" required /> <br />
+
+		<label for="email">Email</label> <br />
+		<input type="email" th:field="*{email}" required /> <br />
+
+		<label for="phoneNumber">Phone Number</label> <br />
+		<input type="text" th:field="*{phoneNumber}" /> <br />
+
+		<a th:text="Cancel" th:href="@{/}"></a> <br />
+		<input type="submit" /> <br />
+	</form>
+</body>
+
+</html>
