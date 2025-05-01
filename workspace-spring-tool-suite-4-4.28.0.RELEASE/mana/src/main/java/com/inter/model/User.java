@@ -1,6 +1,14 @@
 package com.inter.model;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,6 +16,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Past;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlAttribute;
@@ -17,7 +27,7 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 @Table(name = "user")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "user")
-public class User {
+public class User implements UserDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID", nullable = false, unique = true)
@@ -36,6 +46,8 @@ public class User {
 	@XmlAttribute
 	private String lastName;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Past
 	@Column(name = "DateOfBirth", nullable = false)
 	@XmlAttribute
 	private Date dateOfBirth;
@@ -44,6 +56,7 @@ public class User {
 	@XmlAttribute
 	private String password;
 
+	@Email
 	@Column(name = "Email", nullable = false)
 	@XmlAttribute
 	private String email;
@@ -131,5 +144,12 @@ public class User {
 
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// Give all users the same Granted Authority of ROLE_USER
+		List<GrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+		return authorities;
 	}
 }
