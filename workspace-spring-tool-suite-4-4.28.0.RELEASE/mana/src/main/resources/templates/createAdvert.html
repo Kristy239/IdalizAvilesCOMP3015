@@ -50,21 +50,23 @@
 	<div class="container mb-5 mt-5">
 		<div class="row justify-content-center">
 			<div class="col-md-6 text-center">
-				<h1>Create a New Advert</h1>
+				<h1 th:if="${method} == 'post'">Create a New Advert</h1>
+				<h1 th:if="${method} == 'put'">Modify Advert</h1>
 			</div>
 		</div>
 	</div>
 
 	<div class="container w-50 rounded-3 py-3 ">
-		<form th:action="@{/advert}" class="w-auto" method="post" enctype="multipart/form-data">
+		<form th:action="@{${method == 'put'} ? ('/advert/' + ${newFormData.id}) : '/advert'}" class="w-auto" th:method="${method}" th:object="${newFormData}"
+			enctype="multipart/form-data">
 			<div class="input-group mb-3">
 				<label for="title" class="input-group-text">Title</label>
-				<input name="title" type="text" class="form-control">
+				<input name="title" type="text" th:field="*{title}" class="form-control">
 			</div>
 
 			<div class="input-group mb-3">
 				<label for="advertCategory" class="input-group-text">Category</label>
-				<select name="advertCategory" class="form-select" required>
+				<select name="advertCategory" th:field="*{category}" class="form-select" required>
 					<option value="0" selected disabled>Choose...</option>
 					<option th:each="advertCategory : ${advertCategories}" th:text="${advertCategory.name}"
 						th:value="${advertCategory.ID}"></option>
@@ -73,24 +75,27 @@
 
 			<div class="input-group mb-3 mt-3">
 				<label for="cost" class="input-group-text">Cost: $</label>
-				<input name="cost" type="number" class="form-control"
+				<input name="cost" type="number" th:field="*{cost}" class="form-control"
 					aria-label="Dollar amount (with dot and two decimal places)">
 			</div>
 
 			<div class="input-group mb-3">
 				<label for="image" class="input-group-text">Upload</label>
-				<input name="image" type="file" accept="image/*" class="form-control">
+				<input name="image" type="file" th:field="*{image}" accept="image/png" class="form-control">
 			</div>
 
 			<div class="input-group">
 				<label for="description" class="input-group-text">Description</label>
-				<textarea name="description" class="form-control"></textarea>
+				<textarea name="description" th:field="*{description}" class="form-control"></textarea>
 			</div>
 
 			<div class="input-group">
 				<input type="submit" />
 			</div>
-
+		</form>
+		
+		<form th:if="${method} == 'put'" th:action="'/advert/' + ${newFormData.id}" th:method="delete">
+			<input type="submit" class="btn btn-danger" value="Delete" />
 		</form>
 	</div>
 
