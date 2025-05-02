@@ -15,10 +15,11 @@ public class SecurityConfig {
 			auth.requestMatchers("/").permitAll();
 			auth.requestMatchers("/login").permitAll();
 			auth.requestMatchers("/register").permitAll();
+			auth.requestMatchers("/advert/**").permitAll();
 			auth.anyRequest().authenticated();
 		}).formLogin(form -> {
 			form.loginPage("/login").permitAll();
-			form.defaultSuccessUrl("/user").permitAll();
+			form.defaultSuccessUrl("/account").permitAll();
 			form.failureUrl("/login?error=true").permitAll();
 		}).logout(logout -> {
 			logout.logoutUrl("/logout").permitAll();

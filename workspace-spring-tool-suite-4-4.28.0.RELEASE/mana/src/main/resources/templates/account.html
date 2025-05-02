@@ -2,97 +2,139 @@
 <html lang="en" data-bs-theme="dark">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Account</title>
-    <!-- Link obtained in https://cdnjs.com/libraries/bootswatch -->
-    <!-- See more themes in https://bootswatch.com/ -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.3/cerulean/bootstrap.min.css"
-        integrity="sha512-vaImhtQoaCXvevCM/UK+8ND/df0kiQWLtR65wgq0AWShEXLpWHMve0oGgU0q1gq1MbbyEuAhMMlqNmZd7s7wTQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>My Account</title>
+	<!-- Link obtained in https://cdnjs.com/libraries/bootswatch -->
+	<!-- See more themes in https://bootswatch.com/ -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.3/cerulean/bootstrap.min.css"
+		integrity="sha512-vaImhtQoaCXvevCM/UK+8ND/df0kiQWLtR65wgq0AWShEXLpWHMve0oGgU0q1gq1MbbyEuAhMMlqNmZd7s7wTQ=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
-    <div class="container ">
-        <div class="row justify-content-center mt-3">
-          <div class="col-md-6 text-center">
-            <h1>Welcome back!</h1>
-          </div>
-        </div>
-      </div>
 
-    <div class="container mb-5 mt-5">
-        <div class="row justify-content-center">
-          <div class="col-md-6 text-center">
-            <h2>My Account</h2>
-            <a href="./createadvert.html">Create New Advert</a>
-          </div>
-        </div>
-        <h4>My Adverts:</h4>
-    </div>
+	<nav class="navbar navbar-expand-sm">
+		<div class="container-fluid ">
+			<a class="navbar-brand" th:href="@{/}">MANA</a>
+			<!-- Links -->
+			<ul class="navbar-nav me-auto">
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{/}">Home</a>
+				</li>
 
-    <div class="container">
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Categories</a>
+					<ul class="dropdown-menu">
+						<li th:each="advertCategory : ${advertCategories}"><a class="dropdown-item"
+								th:href="@{/results?category=${advertCategory.id}}"
+								th:text="${advertCategory.name}"></a></li>
+					</ul>
+				</li>
 
-        <div class="card mb-3">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="..." class="img-fluid rounded-start" alt="...">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Title</h5>
-                  <a href="./createadvert.html">Modify</a>
-                </div>
-                <button class="btn btn-danger mb-3">
-                    Delete
-                </button>
-              </div>
-            </div>
-          </div>
-    
-          <div class="card mb-3">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="..." class="img-fluid rounded-start" alt="...">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Title</h5>
-                  <a href="./createadvert.html">Modify</a>
-                </div>
-                <button class="btn btn-danger mb-3">
-                    Delete
-                </button>
-              </div>
-            </div>
-          </div>
-    
-          <div class="card mb-3">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="..." class="img-fluid rounded-start" alt="...">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Title</h5>
-                  <a href="./createadvert.html">Modify</a>
-                </div>
-                <button class="btn btn-danger mb-3">
-                    Delete
-                </button>
-              </div>
-            </div>
-          </div>
-      </div>
+				<li sec:authorize="!isFullyAuthenticated()" class="nav-item">
+					<a class="nav-link" th:href="@{/login}">Login</a>
+				</li>
 
-      
+				<li sec:authorize="isFullyAuthenticated()" class="nav-item">
+					<a class="nav-link" th:href="@{/account}">My Account</a>
+				</li>
+			</ul>
+			<form class="d-flex">
+				<input class="form-control me-2" type="text" placeholder="Search">
+				<button class="btn btn-primary" type="button">Search</button>
+			</form>
+		</div>
+	</nav>
 
-      <div class="container-fluid">
-        <footer class="py-3 my-4">
-            <p class="text-center text-body-secondary border-top ">All Rights Reserved</p>
-        </footer>
-      </div>
-    
+
+	<div class="container ">
+		<div class="row justify-content-center mt-3">
+			<div class="col-md-6 text-center">
+				<h1>Welcome back <span th:text="${user.name}"></span>!
+				</h1>
+			</div>
+		</div>
+	</div>
+
+	<div class="container mb-5 mt-5">
+		<div class="row justify-content-center">
+			<div class="col-md-6 text-center">
+				<h2>My Account</h2>
+				<a th:href="@{/advert/create}">Create New Advert</a>
+			</div>
+		</div>
+		<h4>My Adverts:</h4>
+
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Log out" />
+		</form>
+
+	</div>
+
+	<div class="container">
+
+		<div class="card mb-3">
+			<div class="row g-0">
+				<div class="col-md-4">
+					<img src="..." class="img-fluid rounded-start" alt="...">
+				</div>
+				<div class="col-md-8">
+					<div class="card-body">
+						<h5 class="card-title">Title</h5>
+						<a href="@{/advert/create}">Modify</a>
+					</div>
+					<button class="btn btn-danger mb-3">
+						Delete
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="card mb-3">
+			<div class="row g-0">
+				<div class="col-md-4">
+					<img src="..." class="img-fluid rounded-start" alt="...">
+				</div>
+				<div class="col-md-8">
+					<div class="card-body">
+						<h5 class="card-title">Title</h5>
+						<a href="@{/advert/create}">Modify</a>
+					</div>
+					<button class="btn btn-danger mb-3">
+						Delete
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="card mb-3">
+			<div class="row g-0">
+				<div class="col-md-4">
+					<img src="..." class="img-fluid rounded-start" alt="...">
+				</div>
+				<div class="col-md-8">
+					<div class="card-body">
+						<h5 class="card-title">Title</h5>
+						<a href="./createadvert.html">Modify</a>
+					</div>
+					<button class="btn btn-danger mb-3">
+						Delete
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="container-fluid">
+		<footer class="py-3 my-4">
+			<p class="text-center text-body-secondary border-top ">All Rights Reserved</p>
+		</footer>
+	</div>
+
 </body>
+
 </html>

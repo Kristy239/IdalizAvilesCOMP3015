@@ -43,7 +43,7 @@ public class RegisterController {
 			return "error";
 
 		} else {
-			return "redirect:/";
+			return "redirect:/login";
 		}
 	}
 }

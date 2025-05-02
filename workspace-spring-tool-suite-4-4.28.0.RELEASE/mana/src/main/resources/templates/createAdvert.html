@@ -2,110 +2,105 @@
 <html lang="en" data-bs-theme="dark">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Advert</title>
-    <!-- Link obtained in https://cdnjs.com/libraries/bootswatch -->
-    <!-- See more themes in https://bootswatch.com/ -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.3/cerulean/bootstrap.min.css"
-        integrity="sha512-vaImhtQoaCXvevCM/UK+8ND/df0kiQWLtR65wgq0AWShEXLpWHMve0oGgU0q1gq1MbbyEuAhMMlqNmZd7s7wTQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Create Advert</title>
+	<!-- Link obtained in https://cdnjs.com/libraries/bootswatch -->
+	<!-- See more themes in https://bootswatch.com/ -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.3/cerulean/bootstrap.min.css"
+		integrity="sha512-vaImhtQoaCXvevCM/UK+8ND/df0kiQWLtR65wgq0AWShEXLpWHMve0oGgU0q1gq1MbbyEuAhMMlqNmZd7s7wTQ=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm">
+	<nav class="navbar navbar-expand-sm">
+		<div class="container-fluid ">
+			<a class="navbar-brand" th:href="@{/}">MANA</a>
+			<!-- Links -->
+			<ul class="navbar-nav me-auto">
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{/}">Home</a>
+				</li>
 
-        <div class="container-fluid ">
-            <a class="navbar-brand" href="./navigationbar.html">MANA</a>
-            <!-- Links -->
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="./index.html">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./login.html">Login</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Categories</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Houses for Sale</a></li>
-                        <li><a class="dropdown-item" href="#">Houses for Rent</a></li>
-                        <li><a class="dropdown-item" href="#">Cars for Sale</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./myaccount.html"> My Account</a>
-                </li>
-            </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="text" placeholder="Search">
-                <button class="btn btn-primary" type="button">Search</button>
-            </form>
-        </div>
-    </nav>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Categories</a>
+					<ul class="dropdown-menu">
+						<li th:each="advertCategory : ${advertCategories}"><a class="dropdown-item"
+								th:href="@{/results?category=${advertCategory.id}}"
+								th:text="${advertCategory.name}"></a></li>
+					</ul>
+				</li>
 
-    <div class="container mb-5 mt-5">
-        <div class="row justify-content-center">
-          <div class="col-md-6 text-center">
-            <h1>Create a New Advert</h1>
-          </div>
-        </div>
-    </div>
+				<li sec:authorize="!isFullyAuthenticated()" class="nav-item">
+					<a class="nav-link" th:href="@{/login}">Login</a>
+				</li>
 
-   <div class="container w-50 rounded-3 py-3 ">
-    <form class="w-auto">
-        <div class="input-group mb-3" >
-            <span class="input-group-text" id="Title">Title</span>
-            <input type="text" class="form-control" aria-label="Title input" aria-describedby="Advert Title">
-          </div>
+				<li sec:authorize="isFullyAuthenticated()" class="nav-item">
+					<a class="nav-link" th:href="@{/account}">My Account</a>
+				</li>
+			</ul>
+			<form class="d-flex">
+				<input class="form-control me-2" type="text" placeholder="Search">
+				<button class="btn btn-primary" type="button">Search</button>
+			</form>
+		</div>
+	</nav>
 
-    <div class="input-group mb-3" >
-        <label class="input-group-text" for="inputGroupSelect01">Category</label>
-        <select class="form-select" id="inputGroupSelect01">
-          <option selected>Choose...</option>
-          <option value="1">House for sale</option>
-          <option value="2">House for rent</option>
-          <option value="3">Car for sale</option>
-        </select>
-      </div>
+	<div class="container mb-5 mt-5">
+		<div class="row justify-content-center">
+			<div class="col-md-6 text-center">
+				<h1>Create a New Advert</h1>
+			</div>
+		</div>
+	</div>
 
-      <div class="input-group">
-        <span class="input-group-text">First and last name</span>
-        <input type="text" aria-label="First name" class="form-control">
-        <input type="text" aria-label="Last name" class="form-control">
-      </div>
+	<div class="container w-50 rounded-3 py-3 ">
+		<form th:action="@{/advert}" class="w-auto" method="post" enctype="multipart/form-data">
+			<div class="input-group mb-3">
+				<label for="title" class="input-group-text">Title</label>
+				<input name="title" type="text" class="form-control">
+			</div>
 
-      <div data-mdb-input-init class="form-outline mb-3 mt-3" >
-        <label class="form-label" for="phone"> Add phone number with country code:</label>
-        <input type="text" id="phone" class="form-control" data-mdb-input-mask-init data-mdb-input-mask="+48 999-999-999" />
-      </div>
+			<div class="input-group mb-3">
+				<label for="advertCategory" class="input-group-text">Category</label>
+				<select name="advertCategory" class="form-select" required>
+					<option value="0" selected disabled>Choose...</option>
+					<option th:each="advertCategory : ${advertCategories}" th:text="${advertCategory.name}"
+						th:value="${advertCategory.ID}"></option>
+				</select>
+			</div>
 
-      <div class="input-group mb-3 mt-3" >
-        <span class="input-group-text">Price: $</span>
-        <span class="input-group-text">0.00</span>
-        <input type="text" class="form-control"  aria-label="Dollar amount (with dot and two decimal places)">
-      </div>
+			<div class="input-group mb-3 mt-3">
+				<label for="cost" class="input-group-text">Cost: $</label>
+				<input name="cost" type="number" class="form-control"
+					aria-label="Dollar amount (with dot and two decimal places)">
+			</div>
 
-      <div class="input-group mb-3" >
-        <input type="file" class="form-control" id="inputGroupFile02">
-        <label class="input-group-text" for="inputGroupFile02">Upload</label>
-      </div>
+			<div class="input-group mb-3">
+				<label for="image" class="input-group-text">Upload</label>
+				<input name="image" type="file" accept="image/*" class="form-control">
+			</div>
 
-      <div class="input-group" >
-        <span class="input-group-text">Description</span>
-        <textarea class="form-control" aria-label="With textarea"></textarea>
-      </div>
+			<div class="input-group">
+				<label for="description" class="input-group-text">Description</label>
+				<textarea name="description" class="form-control"></textarea>
+			</div>
 
-    </form>
-   </div>
-    
+			<div class="input-group">
+				<input type="submit" />
+			</div>
 
-    <div class="container-fluid ">
-        <footer class="py-3 my-4">
-            <p class="text-center text-body-secondary border-top">All Rights Reserved</p>
-        </footer>
-      </div>
+		</form>
+	</div>
+
+
+	<div class="container-fluid ">
+		<footer class="py-3 my-4">
+			<p class="text-center text-body-secondary border-top">All Rights Reserved</p>
+		</footer>
+	</div>
 
 </body>
+
 </html>

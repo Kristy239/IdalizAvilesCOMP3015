@@ -2,89 +2,92 @@
 <html lang="en" data-bs-theme="dark">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MANA</title>
-    <!-- Link obtained in https://cdnjs.com/libraries/bootswatch -->
-    <!-- See more themes in https://bootswatch.com/ -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/darkly/bootstrap.min.css" integrity="sha384-nNK9n28pDUDDgIiIqZ/MiyO3F4/9vsMtReZK39klb/MtkZI3/LtjSjlmyVPS3KdN" crossorigin="anonymous">
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>MANA</title>
+	<!-- Link obtained in https://cdnjs.com/libraries/bootswatch -->
+	<!-- See more themes in https://bootswatch.com/ -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/darkly/bootstrap.min.css"
+		integrity="sha384-nNK9n28pDUDDgIiIqZ/MiyO3F4/9vsMtReZK39klb/MtkZI3/LtjSjlmyVPS3KdN" crossorigin="anonymous">
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm">
+	<nav class="navbar navbar-expand-sm">
+		<div class="container-fluid ">
+			<a class="navbar-brand" th:href="@{/}">MANA</a>
+			<!-- Links -->
+			<ul class="navbar-nav me-auto">
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{/}">Home</a>
+				</li>
 
-        <div class="container-fluid ">
-            <a class="navbar-brand" href="./navigationbar.html">MANA</a>
-            <!-- Links -->
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="./index.html">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./login.html">Login</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Categories</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Houses for Sale</a></li>
-                        <li><a class="dropdown-item" href="#">Houses for Rent</a></li>
-                        <li><a class="dropdown-item" href="#">Cars for Sale</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./myaccount.html"> My Account</a>
-                </li>
-            </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="text" placeholder="Search">
-                <button class="btn btn-primary" type="button">Search</button>
-            </form>
-        </div>
-    </nav>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Categories</a>
+					<ul class="dropdown-menu">
+						<li th:each="advertCategory : ${advertCategories}"><a class="dropdown-item"
+								th:href="@{/results?category=${advertCategory.id}}"
+								th:text="${advertCategory.name}"></a></li>
+					</ul>
+				</li>
 
-    <main>
-        <h1 class="text-center text-body-secondary mt-3 mb-3">MANA Advertisements</h1>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col">
-              <div class="card">
-                <img src=".\pics\housesale.jpg" class="card-img-top" alt="Houses for sale">
-                <div class="card-body text-center">
-                  <h5 class="card-title">Houses for Sale</h5>
-                  <p class="card-text">House for Sale description</p>
-                  <a href="#" class="btn btn-primary">See More</a>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card">
-                <img src=".\pics\houserent.jpg" class="card-img-top" alt="Houses for rent">
-                <div class="card-body text-center">
-                  <h5 class="card-title">Houses for Rent</h5>
-                  <p class="card-text">House for Rent description</p>
-                  <a href="#" class="btn btn-primary">See More</a>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card">
-                <img src=".\pics\carsale.jpg" class="card-img-top" alt="Cars for sale">
-                <div class="card-body text-center">
-                  <h5 class="card-title">Cars for Sale </h5>
-                  <p class="card-text">Car for Sale description</p>
-                  <a href="#" class="btn btn-primary">See More</a>
-                </div>
-              </div>
-            </div>
-          </div>
-    </main>
+				<li sec:authorize="!isFullyAuthenticated()" class="nav-item">
+					<a class="nav-link" th:href="@{/login}">Login</a>
+				</li>
 
-    <div class="container-fluid ">
-        <footer class="py-3 my-4">
-            <p class="text-center text-body-secondary border-top">All Rights Reserved</p>
-        </footer>
-      </div>
+				<li sec:authorize="isFullyAuthenticated()" class="nav-item">
+					<a class="nav-link" th:href="@{/account}">My Account</a>
+				</li>
+			</ul>
+			<form class="d-flex">
+				<input class="form-control me-2" type="text" placeholder="Search">
+				<button class="btn btn-primary" type="button">Search</button>
+			</form>
+		</div>
+	</nav>
+
+	<main>
+		<h1 class="text-center text-body-secondary mt-3 mb-3">MANA Advertisements</h1>
+		<div class="row row-cols-1 row-cols-md-3 g-4">
+			<div class="col">
+				<div class="card">
+					<img src="#" class="card-img-top" alt="Houses for sale">
+					<div class="card-body text-center">
+						<h5 class="card-title">Houses for Sale</h5>
+						<p class="card-text">House for Sale description</p>
+						<a th:href="@{/results?category=1}" class="btn btn-primary">See More</a>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="card">
+					<img src="#" class="card-img-top" alt="Houses for rent">
+					<div class="card-body text-center">
+						<h5 class="card-title">Houses for Rent</h5>
+						<p class="card-text">House for Rent description</p>
+						<a th:href="@{/results?category=2}" class="btn btn-primary">See More</a>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="card">
+					<img src="#" class="card-img-top" alt="Cars for sale">
+					<div class="card-body text-center">
+						<h5 class="card-title">Cars for Sale </h5>
+						<p class="card-text">Car for Sale description</p>
+						<a th:href="@{/results?category=3}" class="btn btn-primary">See More</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<div class="container-fluid ">
+		<footer class="py-3 my-4">
+			<p class="text-center text-body-secondary border-top">All Rights Reserved</p>
+		</footer>
+	</div>
 
 </body>
 
