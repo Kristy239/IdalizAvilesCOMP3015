@@ -77,15 +77,16 @@
 		<div th:each="advert : ${adverts}" class="card mb-3">
 			<div class="row g-0">
 				<div class="col-md-4">
-					<img src="@{'data:image/png;base64,' + ${advert.image}}" class="img-fluid rounded-start">
+					<img th:src="@{${advert.imageBase64}}" class="img-fluid rounded-start">
 				</div>
 				<div class="col-md-8">
 					<div class="card-body">
 						<h5 th:text="${advert.title}" class="card-title">Title</h5>
-						<a th:href="@{'/advert/modify/' + ${advert.id}}">Modify</a>
+						<a th:href="@{'/advert/modify/' + ${advert.ID}}">Modify</a>
+						<a th:href="@{'/advert/' + ${advert.ID}}">Details</a>
 					</div>
 
-					<form th:action="@{'/advert/' + ${advert.id}}" th:method="delete">
+					<form th:action="@{'/advert/' + ${advert.ID}}" th:method="delete">
 						<input type="submit" value="Delete" class="btn btn-danger mb-3" />
 					</form>
 				</div>

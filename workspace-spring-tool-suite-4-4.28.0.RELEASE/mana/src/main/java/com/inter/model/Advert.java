@@ -19,53 +19,58 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "advert")
 public class Advert {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID", nullable = false, unique = true)
 	@XmlAttribute
 	private Long ID;
-	
-	@OneToOne
-	@JoinColumn(name = "Category")
-	@XmlAttribute
-	private AdvertCategory category;
-	
-	@OneToOne
-	@JoinColumn(name = "Owner")
-	@XmlAttribute
-	private User owner;
-	
+
 	@Column(name = "Title", nullable = false)
 	@XmlAttribute
 	private String title;
-	
+
 	@Column(name = "Description", nullable = false)
 	@XmlAttribute
 	private String description;
-	
-	@Lob
-	@Column(name = "Image", nullable = false)
-	@XmlAttribute
-	private byte[] image;
-	
+
 	@Column(name = "Cost", nullable = false)
 	@XmlAttribute
 	private float cost;
-	
+
+	@Lob
+	@Column(name = "Image", nullable = true)
+	@XmlAttribute
+	private byte[] image;
+
+	@Column(name = "ImageContentType", nullable = true)
+	@XmlAttribute
+	private String imageContentType;
+
+	@OneToOne
+	@JoinColumn(name = "Owner", nullable = false)
+	@XmlAttribute
+	private User owner;
+
+	@OneToOne
+	@JoinColumn(name = "Category", nullable = true)
+	@XmlAttribute
+	private AdvertCategory category;
+
 	public Advert() {
 		super();
 	}
-	
-	public Advert(Long ID, AdvertCategory category, User owner, String title, String description, byte[] image, float cost) {
+
+	public Advert(Long ID, String title, String description, float cost, byte[] image, String imageContentType, User owner, AdvertCategory category) {
 		super();
 		this.ID = ID;
-		this.category = category;
-		this.owner = owner;
 		this.title = title;
 		this.description = description;
-		this.image = image;
 		this.cost = cost;
+		this.image = image;
+		this.imageContentType = imageContentType;
+		this.owner = owner;
+		this.category = category;
 	}
 
 	public Long getID() {
@@ -74,22 +79,6 @@ public class Advert {
 
 	public void setID(Long iD) {
 		ID = iD;
-	}
-
-	public AdvertCategory getCategory() {
-		return category;
-	}
-
-	public void setCategory(AdvertCategory category) {
-		this.category = category;
-	}
-
-	public User getOwner() {
-		return owner;
-	}
-
-	public void setOwner(User owner) {
-		this.owner = owner;
 	}
 
 	public String getTitle() {
@@ -108,6 +97,14 @@ public class Advert {
 		this.description = description;
 	}
 
+	public float getCost() {
+		return cost;
+	}
+
+	public void setCost(float cost) {
+		this.cost = cost;
+	}
+
 	public byte[] getImage() {
 		return image;
 	}
@@ -116,11 +113,27 @@ public class Advert {
 		this.image = image;
 	}
 
-	public float getCost() {
-		return cost;
+	public String getImageContentType() {
+		return imageContentType;
 	}
 
-	public void setCost(float cost) {
-		this.cost = cost;
+	public void setImageContentType(String imageContentType) {
+		this.imageContentType = imageContentType;
+	}
+
+	public User getOwner() {
+		return owner;
+	}
+
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
+
+	public AdvertCategory getCategory() {
+		return category;
+	}
+
+	public void setCategory(AdvertCategory category) {
+		this.category = category;
 	}
 }

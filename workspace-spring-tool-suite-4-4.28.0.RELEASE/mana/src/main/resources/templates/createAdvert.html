@@ -27,7 +27,7 @@
 					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Categories</a>
 					<ul class="dropdown-menu">
 						<li th:each="advertCategory : ${advertCategories}"><a class="dropdown-item"
-								th:href="@{/results?category=${advertCategory.id}}"
+								th:href="@{/results?category=${advertCategory.ID}}"
 								th:text="${advertCategory.name}"></a></li>
 					</ul>
 				</li>
@@ -57,7 +57,7 @@
 	</div>
 
 	<div class="container w-50 rounded-3 py-3 ">
-		<form th:action="@{${method == 'put'} ? ('/advert/' + ${newFormData.id}) : '/advert'}" class="w-auto" th:method="${method}" th:object="${newFormData}"
+		<form th:action="@{${method == 'put'} ? ('/advert/' + ${formData.ID}) : '/advert'}" class="w-auto" th:method="${method}" th:object="${formData}"
 			enctype="multipart/form-data">
 			<div class="input-group mb-3">
 				<label for="title" class="input-group-text">Title</label>
@@ -94,7 +94,7 @@
 			</div>
 		</form>
 		
-		<form th:if="${method} == 'put'" th:action="'/advert/' + ${newFormData.id}" th:method="delete">
+		<form th:if="${method} == 'put'" th:action="'/advert/' + ${formData.ID}" th:method="delete">
 			<input type="submit" class="btn btn-danger" value="Delete" />
 		</form>
 	</div>

@@ -22,7 +22,7 @@ public class RegisterController {
 	@Autowired
 	UserService userService;
 
-	@GetMapping()
+	@GetMapping
 	public String register(Map<String, Object> model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
@@ -35,12 +35,12 @@ public class RegisterController {
 		}
 	}
 
-	@PostMapping()
+	@PostMapping
 	public String createUser(@ModelAttribute User newUser, Map<String, Object> model) {
 		newUser = this.userService.createUser(newUser);
 
 		if (newUser == null) {
-			return "error";
+			return "redirect:/register?error=true";
 
 		} else {
 			return "redirect:/login";

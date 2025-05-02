@@ -16,6 +16,7 @@ public class SecurityConfig {
 			auth.requestMatchers("/login").permitAll();
 			auth.requestMatchers("/register").permitAll();
 			auth.requestMatchers("/advert/**").permitAll();
+			auth.requestMatchers("/images/**").permitAll();
 			auth.anyRequest().authenticated();
 		}).formLogin(form -> {
 			form.loginPage("/login").permitAll();

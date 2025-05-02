@@ -55,12 +55,12 @@
 		</div>
 	</div>
 
-	<div class="d-flex justify-content-center" th:if="${advert != null}" th:object="${advert}">"
+	<div class="d-flex justify-content-center" th:unless="${advert == null}" th:object="${advert}">
 		<div class="card mb-3" style="width:75%">
 			<div class="row g-0">
 				<h5 class="card-title text-center mt-3 mb-5" th:text="*{title}"></h5>
 				<div class="col-md-4">
-					<img th:src="@{'data:image/png;base64,' + ${image}}" class="img-fluid rounded-start" alt="...">
+					<img th:src="@{*{imageBase64}}" class="img-fluid rounded-start" alt="...">
 				</div>
 				<div class="col-md-8">
 					<div class="card-body">
@@ -73,7 +73,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div th:if="${advert == null}">
 		<h1 class="alert alert-warning">Error. Advert not found</h1>
 	</div>
