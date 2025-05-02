@@ -74,54 +74,20 @@
 	</div>
 
 	<div class="container">
-
-		<div class="card mb-3">
+		<div th:each="advert : ${adverts}" class="card mb-3">
 			<div class="row g-0">
 				<div class="col-md-4">
-					<img src="..." class="img-fluid rounded-start" alt="...">
+					<img src="@{'data:image/png;base64,' + ${advert.image}}" class="img-fluid rounded-start">
 				</div>
 				<div class="col-md-8">
 					<div class="card-body">
-						<h5 class="card-title">Title</h5>
-						<a href="@{/advert/create}">Modify</a>
+						<h5 th:text="${advert.title}" class="card-title">Title</h5>
+						<a th:href="@{'/advert/modify/' + ${advert.id}}">Modify</a>
 					</div>
-					<button class="btn btn-danger mb-3">
-						Delete
-					</button>
-				</div>
-			</div>
-		</div>
 
-		<div class="card mb-3">
-			<div class="row g-0">
-				<div class="col-md-4">
-					<img src="..." class="img-fluid rounded-start" alt="...">
-				</div>
-				<div class="col-md-8">
-					<div class="card-body">
-						<h5 class="card-title">Title</h5>
-						<a href="@{/advert/create}">Modify</a>
-					</div>
-					<button class="btn btn-danger mb-3">
-						Delete
-					</button>
-				</div>
-			</div>
-		</div>
-
-		<div class="card mb-3">
-			<div class="row g-0">
-				<div class="col-md-4">
-					<img src="..." class="img-fluid rounded-start" alt="...">
-				</div>
-				<div class="col-md-8">
-					<div class="card-body">
-						<h5 class="card-title">Title</h5>
-						<a href="./createadvert.html">Modify</a>
-					</div>
-					<button class="btn btn-danger mb-3">
-						Delete
-					</button>
+					<form th:action="@{'/advert/' + ${advert.id}}" th:method="delete">
+						<input type="submit" value="Delete" class="btn btn-danger mb-3" />
+					</form>
 				</div>
 			</div>
 		</div>
