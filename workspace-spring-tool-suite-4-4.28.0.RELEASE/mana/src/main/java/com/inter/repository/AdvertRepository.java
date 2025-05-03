@@ -14,6 +14,6 @@ public interface AdvertRepository extends CrudRepository<Advert, Long> {
 	
 	public List<Advert> findByOwner(User owner);
 	public List<Advert> findByCategory(AdvertCategory category);
-	public List<Advert> findByTitleLike(String titlePattern);
-	public List<Advert> findByCategoryAndTitleLike(AdvertCategory category, String title);
+	public List<Advert> findByTitleContainingIgnoreCase(String titletitle);
+	public List<Advert> findByCategoryAndTitleContainingIgnoreCase(AdvertCategory category, String title);
 }

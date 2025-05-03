@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en" data-bs-theme="dark" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="UTF-8">
@@ -58,13 +58,7 @@
 		</div>
 	</div>
 
-
-	<div class="container-fluid ">
-		<footer class="py-3 my-4">
-			<p class="text-center text-body-secondary border-top">All Rights Reserved</p>
-		</footer>
-	</div>
-
+	<div th:replace="~{fragments/base :: footer}"></div>
 </body>
 
 </html>

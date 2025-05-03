@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en" data-bs-theme="dark" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="UTF-8">
@@ -14,7 +14,6 @@
 </head>
 
 <body>
-
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-md-6 text-center">
@@ -32,23 +31,23 @@
 
 					<div class="form-group">
 						<label for="username">Username</label>
-						<input name="username" type="text" th:field="*{username}" class="form-control"
-							placeholder="username" required>
+						<input name="username" type="text" th:field="*{username}" minlenght="8" maxlength="32" class="form-control"
+							placeholder="username" required autofocus>
 					</div>
 
 					<div class="form-group">
 						<label for="firstName">
 							First Name
 						</label>
-						<input name="firstName" type="text" th:field="*{name}" class="form-control"
-							placeholder="First Name" required autofocus>
+						<input name="firstName" type="text" th:field="*{name}" maxlength="50" class="form-control"
+							placeholder="First Name" required>
 					</div>
 
 					<div class="form-group">
 						<label for="lastName">
 							Last Name
 						</label>
-						<input name="lastName" type="text" th:field="*{lastName}" class="form-control"
+						<input name="lastName" type="text" th:field="*{lastName}" maxlength="100" class="form-control"
 							placeholder="Last Name" required>
 					</div>
 
@@ -59,20 +58,20 @@
 
 					<div class="form-group">
 						<label for="password">Password</label>
-						<input name="password" type="password" th:field="*{password}" class="form-control"
+						<input name="password" type="password" th:field="*{password}" minlength="8" maxlength="20" class="form-control"
 							placeholder="Must be 8-20 characters" required>
 					</div>
 
 					<div class="form-group">
 						<label for="email">Email</label>
-						<input type="email" th:field="*{email}" class="form-control" placeholder="johndoe@mail.com"
+						<input type="email" th:field="*{email}" maxlength="100" class="form-control" placeholder="johndoe@mail.com"
 							required>
 					</div>
 
 					<div class="form-group mb-3">
 						<label for="phoneNumber">Phone Number</label>
 						<input type="text" class="form-control" placeholder="XXX-XXX-XXXX"
-							oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)" maxlength="10">
+							oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)" maxlength="15">
 					</div>
 
 					<a th:text="Cancel" th:href="@{/}"></a>
@@ -83,12 +82,7 @@
 		</div>
 	</div>
 
-	<div class="container-fluid ">
-		<footer class="py-3 my-4">
-			<p class="text-center text-body-secondary border-top">All Rights Reserved</p>
-		</footer>
-	</div>
-
+	<div th:replace="~{fragments/base :: footer}"></div>
 </body>
 
 </html>

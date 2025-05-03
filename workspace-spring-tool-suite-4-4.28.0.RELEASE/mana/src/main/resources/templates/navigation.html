@@ -1,57 +1,37 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en" data-bs-theme="dark" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navigation Bar</title>
-    <!-- Link obtained in https://cdnjs.com/libraries/bootswatch -->
-    <!-- See more themes in https://bootswatch.com/ -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.3/cerulean/bootstrap.min.css"
-        integrity="sha512-vaImhtQoaCXvevCM/UK+8ND/df0kiQWLtR65wgq0AWShEXLpWHMve0oGgU0q1gq1MbbyEuAhMMlqNmZd7s7wTQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navigation Bar</title>
+  <!-- Link obtained in https://cdnjs.com/libraries/bootswatch -->
+  <!-- See more themes in https://bootswatch.com/ -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.3/cerulean/bootstrap.min.css"
+    integrity="sha512-vaImhtQoaCXvevCM/UK+8ND/df0kiQWLtR65wgq0AWShEXLpWHMve0oGgU0q1gq1MbbyEuAhMMlqNmZd7s7wTQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
-    <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-md-6 text-center">
-            <h1>MANA Advertisements</h1>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 text-center">
+        <h1>MANA Advertisements</h1>
 
-            <div class="search-container d-flex flex-row">
-              <input type="text" class="form-control search-input" placeholder="Search...">
-              <input type="submit" class="btn btn-primary search-button" value="Search">
-            </div>
-
-            <a href="./index.html">Home Page</a>
-            <a href="#">User Account</a>
-          </div>
+        <div class="search-container d-flex flex-row">
+          <input type="text" class="form-control search-input" placeholder="Search...">
+          <input type="submit" class="btn btn-primary search-button" value="Search">
         </div>
+
+        <a href="./index.html">Home Page</a>
+        <a href="#">User Account</a>
       </div>
-      <div class="container-fluid ">
-        <footer class="py-3 my-4">
-            <p class="text-center text-body-secondary border-top">All Rights Reserved</p>
-        </footer>
-      </div>
+    </div>
+  </div>
+  </div>
 
-    <!-- <div class="container">
-        <div class="row">
-            <div class="col-6">
-                <a href="ïndex.html"></a>
-
-            </div>
-            <div class="col-6">
-                <a href="MyAccount.html"></a></div>
-          </div>
-      </div>
-
-    <main>
-
-    </main>
-    <footer class="py-3 my-4">
-        <p class="text-center text-body-secondary border-top">All Rights Reserved</p>
-    </footer> -->
+  <div th:replace="~{fragments/base :: footer}"></div>
 </body>
 
 </html>

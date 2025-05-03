@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en" data-bs-theme="dark" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="UTF-8">
@@ -14,38 +14,7 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-sm">
-		<div class="container-fluid ">
-			<a class="navbar-brand" th:href="@{/}">MANA</a>
-			<!-- Links -->
-			<ul class="navbar-nav me-auto">
-				<li class="nav-item">
-					<a class="nav-link" th:href="@{/}">Home</a>
-				</li>
-
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Categories</a>
-					<ul class="dropdown-menu">
-						<li th:each="advertCategory : ${advertCategories}"><a class="dropdown-item"
-								th:href="@{/results?category=${advertCategory.id}}"
-								th:text="${advertCategory.name}"></a></li>
-					</ul>
-				</li>
-
-				<li sec:authorize="!isFullyAuthenticated()" class="nav-item">
-					<a class="nav-link" th:href="@{/login}">Login</a>
-				</li>
-
-				<li sec:authorize="isFullyAuthenticated()" class="nav-item">
-					<a class="nav-link" th:href="@{/account}">My Account</a>
-				</li>
-			</ul>
-			<form class="d-flex">
-				<input class="form-control me-2" type="text" placeholder="Search">
-				<button class="btn btn-primary" type="button">Search</button>
-			</form>
-		</div>
-	</nav>
+	<div th:replace="~{fragments/base :: navbar(${searchForm}, ${advertCategories})}"></div>
 
 	<main>
 		<h1 class="text-center text-body-secondary mt-3 mb-3">MANA Advertisements</h1>
@@ -56,7 +25,7 @@
 					<div class="card-body text-center">
 						<h5 class="card-title">Houses for Sale</h5>
 						<p class="card-text">House for Sale description</p>
-						<a th:href="@{/results?category=1}" class="btn btn-primary">See More</a>
+						<a th:href="@{/search/category?category=1}" class="btn btn-primary">See More</a>
 					</div>
 				</div>
 			</div>
@@ -66,7 +35,7 @@
 					<div class="card-body text-center">
 						<h5 class="card-title">Houses for Rent</h5>
 						<p class="card-text">House for Rent description</p>
-						<a th:href="@{/results?category=2}" class="btn btn-primary">See More</a>
+						<a th:href="@{/search/category?category=2}" class="btn btn-primary">See More</a>
 					</div>
 				</div>
 			</div>
@@ -76,19 +45,14 @@
 					<div class="card-body text-center">
 						<h5 class="card-title">Cars for Sale </h5>
 						<p class="card-text">Car for Sale description</p>
-						<a th:href="@{/results?category=3}" class="btn btn-primary">See More</a>
+						<a th:href="@{/search/category?category=3}" class="btn btn-primary">See More</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</main>
 
-	<div class="container-fluid ">
-		<footer class="py-3 my-4">
-			<p class="text-center text-body-secondary border-top">All Rights Reserved</p>
-		</footer>
-	</div>
-
+	<div th:replace="~{fragments/base :: footer}"></div>
 </body>
 
 </html>

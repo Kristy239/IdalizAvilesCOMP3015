@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en" data-bs-theme="dark" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="UTF-8">
@@ -14,38 +14,7 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-sm">
-		<div class="container-fluid ">
-			<a class="navbar-brand" th:href="@{/}">MANA</a>
-			<!-- Links -->
-			<ul class="navbar-nav me-auto">
-				<li class="nav-item">
-					<a class="nav-link" th:href="@{/}">Home</a>
-				</li>
-
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Categories</a>
-					<ul class="dropdown-menu">
-						<li th:each="advertCategory : ${advertCategories}"><a class="dropdown-item"
-								th:href="@{/results?category=${advertCategory.ID}}"
-								th:text="${advertCategory.name}"></a></li>
-					</ul>
-				</li>
-
-				<li sec:authorize="!isFullyAuthenticated()" class="nav-item">
-					<a class="nav-link" th:href="@{/login}">Login</a>
-				</li>
-
-				<li sec:authorize="isFullyAuthenticated()" class="nav-item">
-					<a class="nav-link" th:href="@{/account}">My Account</a>
-				</li>
-			</ul>
-			<form class="d-flex">
-				<input class="form-control me-2" type="text" placeholder="Search">
-				<button class="btn btn-primary" type="button">Search</button>
-			</form>
-		</div>
-	</nav>
+	<div th:replace="~{fragments/base :: navbar(${searchForm}, ${advertCategories})}"></div>
 
 	<div class="container mb-5 mt-5">
 		<div class="row justify-content-center">
@@ -57,11 +26,11 @@
 	</div>
 
 	<div class="container w-50 rounded-3 py-3 ">
-		<form th:action="@{${method == 'put'} ? ('/advert/' + ${formData.ID}) : '/advert'}" class="w-auto" th:method="${method}" th:object="${formData}"
-			enctype="multipart/form-data">
+		<form th:action="@{${method == 'put'} ? ('/advert/' + ${formData.ID}) : '/advert'}" class="w-auto"
+			th:method="${method}" th:object="${formData}" enctype="multipart/form-data">
 			<div class="input-group mb-3">
 				<label for="title" class="input-group-text">Title</label>
-				<input name="title" type="text" th:field="*{title}" class="form-control">
+				<input name="title" type="text" th:field="*{title}" maxlength="50" class="form-control">
 			</div>
 
 			<div class="input-group mb-3">
@@ -75,37 +44,31 @@
 
 			<div class="input-group mb-3 mt-3">
 				<label for="cost" class="input-group-text">Cost: $</label>
-				<input name="cost" type="number" th:field="*{cost}" class="form-control"
+				<input name="cost" type="number" step="0.01" value="0.00" th:field="*{cost}" class="form-control"
 					aria-label="Dollar amount (with dot and two decimal places)">
 			</div>
 
 			<div class="input-group mb-3">
 				<label for="image" class="input-group-text">Upload</label>
-				<input name="image" type="file" th:field="*{image}" accept="image/png" class="form-control">
+				<input name="image" type="file" th:field="*{image}" accept="image/*" class="form-control">
 			</div>
 
 			<div class="input-group">
 				<label for="description" class="input-group-text">Description</label>
-				<textarea name="description" th:field="*{description}" class="form-control"></textarea>
+				<textarea name="description" th:field="*{description}" maxlength="1000" class="form-control"></textarea>
 			</div>
 
 			<div class="input-group">
 				<input type="submit" />
 			</div>
 		</form>
-		
+
 		<form th:if="${method} == 'put'" th:action="'/advert/' + ${formData.ID}" th:method="delete">
 			<input type="submit" class="btn btn-danger" value="Delete" />
 		</form>
 	</div>
 
-
-	<div class="container-fluid ">
-		<footer class="py-3 my-4">
-			<p class="text-center text-body-secondary border-top">All Rights Reserved</p>
-		</footer>
-	</div>
-
+	<div th:replace="~{fragments/base :: footer}"></div>
 </body>
 
 </html>

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.inter.helpers.FormFriendlyAdvert;
+import com.inter.helpers.SearchForm;
 import com.inter.model.Advert;
 import com.inter.model.User;
 import com.inter.repository.AdvertCategoryRepository;
@@ -33,9 +34,10 @@ public class AdvertController {
 
 	@GetMapping("/{id}")
 	public String getAdvertDetails(@PathVariable Long id, Map<String, Object> model) {
-		FormFriendlyAdvert advert = new FormFriendlyAdvert(this.advertRepository.findById(id).orElse(new Advert()));
+		model.put("searchForm", new SearchForm());
 		model.put("advertCategories", advertCategoryRepository.findAll());
-
+		FormFriendlyAdvert advert = new FormFriendlyAdvert(this.advertRepository.findById(id).orElse(new Advert()));
+		
 		if (advert.getID() == null) {
 			model.put("advert", null);
 		} else {
@@ -47,12 +49,14 @@ public class AdvertController {
 
 	@GetMapping("/create")
 	public String create(Map<String, Object> model) {
+		model.put("searchForm", new SearchForm());
+		model.put("advertCategories", advertCategoryRepository.findAll());
+		
 		// Check if the user is authenticated
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (auth != null && !(auth instanceof AnonymousAuthenticationToken) && auth.isAuthenticated()) {
 			model.put("formData", new FormFriendlyAdvert());
 			model.put("method", "post");
-			model.put("advertCategories", advertCategoryRepository.findAll());
 			return "createAdvert";
 
 		} else {
@@ -64,9 +68,12 @@ public class AdvertController {
 
 	@GetMapping("/modify/{id}")
 	public String modify(@PathVariable Long id, Map<String, Object> model) {
+		model.put("searchForm", new SearchForm());
+		model.put("advertCategories", advertCategoryRepository.findAll());
 		// Check if the user is authenticated
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (auth != null && !(auth instanceof AnonymousAuthenticationToken) && auth.isAuthenticated()) {
+			model.put("advertCategories", advertCategoryRepository.findAll());
 			FormFriendlyAdvert advert = new FormFriendlyAdvert(advertRepository.findById(id).orElse(new Advert()));
 
 			if (advert.getOwner().getID() != ((User) auth.getPrincipal()).getID()) {
@@ -81,7 +88,6 @@ public class AdvertController {
 
 			model.put("formData", advert);
 			model.put("method", "put");
-			model.put("advertCategories", advertCategoryRepository.findAll());
 			return "createAdvert";
 
 		} else {

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.inter.helpers.FormFriendlyAdvert;
+import com.inter.helpers.SearchForm;
 import com.inter.model.User;
 import com.inter.repository.AdvertCategoryRepository;
 import com.inter.repository.AdvertRepository;
@@ -27,12 +28,13 @@ public class AccountController {
 
 	@GetMapping
 	public String account(Map<String, Object> model) {
+		model.put("searchForm", new SearchForm());
+		model.put("advertCategories", advertCategoryRepository.findAll());
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		List<FormFriendlyAdvert> adverts = advertRepository.findByOwner(user).stream().map(advert -> new FormFriendlyAdvert(advert))
-				.collect(Collectors.toList());
+		List<FormFriendlyAdvert> adverts = advertRepository.findByOwner(user).stream()
+				.map(advert -> new FormFriendlyAdvert(advert)).collect(Collectors.toList());
 		model.put("user", user);
 		model.put("adverts", adverts);
-		model.put("advertCategories", advertCategoryRepository.findAll());
 		return "account";
 	}
 }
