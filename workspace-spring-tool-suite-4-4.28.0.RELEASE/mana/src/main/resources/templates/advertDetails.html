@@ -33,17 +33,33 @@
 				</div>
 				<div class="col-md-8">
 					<div class="card-body">
-						<p class="card-text">Cost: <span th:text="*{cost}"></span></p>
-						<p class="card-text">Contact Information: <span th:text="*{owner.email}"></span></p>
-						<p class="card-text">Owner: <span th:text="*{owner.username}"></span></p>
-						<p class="card-text">Description: <span th:text="*{description}"></span></p>
+						<div class="input-group mb-3">
+							<label for="cost" class="input-group-text">Cost: $</label>
+							<input name="cost" type="number" th:value="*{cost}" class="form-control"
+								aria-label="Dollar amount (with dot and two decimal places)" readonly>
+						</div>
+
+						<div class="input-group mb-3">
+							<label for="email" class="input-group-text">Contact Information: </label>
+							<input name="email" type="email" th:value="*{owner.email}" class="form-control" readonly>
+						</div>
+
+						<div class="input-group mb-3">
+							<label for="owner" class="input-group-text">Owner: </label>
+							<input name="owner" type="text" th:value="*{owner.username}" class="form-control" readonly>
+						</div>
+
+						<div class="input-group mb-3">
+							<label for="description" class="input-group-text">Description</label>
+							<textarea name="description" th:text="*{description}" class="form-control" readonly></textarea>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<div th:if="${advert == null}">
+	<div th:if="${advert == null}" class="d-flex justify-content-center">
 		<h1 class="alert alert-warning">Error. Advert not found</h1>
 	</div>
 

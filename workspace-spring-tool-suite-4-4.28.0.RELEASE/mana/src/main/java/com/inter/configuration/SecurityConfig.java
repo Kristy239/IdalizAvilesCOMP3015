@@ -13,6 +13,7 @@ public class SecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests(auth -> {
 			auth.requestMatchers("/").permitAll();
+			auth.requestMatchers("/navigation").permitAll();
 			auth.requestMatchers("/fragments/**").permitAll();
 			auth.requestMatchers("/images/**").permitAll();
 			auth.requestMatchers("/register").permitAll();

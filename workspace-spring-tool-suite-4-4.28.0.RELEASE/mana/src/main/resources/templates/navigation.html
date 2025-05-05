@@ -19,13 +19,25 @@
       <div class="col-md-6 text-center">
         <h1>MANA Advertisements</h1>
 
-        <div class="search-container d-flex flex-row">
-          <input type="text" class="form-control search-input" placeholder="Search...">
-          <input type="submit" class="btn btn-primary search-button" value="Search">
-        </div>
+        <form th:action="@{/search}" th:object="${searchForm}" th:method="get" class="d-flex flex-row" role="search">
+          <input th:field="*{query}" type="search" placeholder="Search" class="form-control search-input mx-3">
+          <select th:field="*{category}" class="form-select me-3">
+            <option selected th:text="All" th:value="0" class="dropdown-item"></option>
+            <option th:each="advertCategory : ${advertCategories}" th:text="${advertCategory.name}"
+              th:value="${advertCategory.ID}" class="dropdown-item"></option>
+          </select>
+          <input type="submit" value="Search" class="btn btn-primary search-button" />
+        </form>
 
-        <a href="./index.html">Home Page</a>
-        <a href="#">User Account</a>
+        <a th:href="@{/}" class="mx-2">Home Page</a>
+
+        <span sec:authorize="!isFullyAuthenticated()">
+          <a th:href="@{/login}" class="mx-2">Login</a>
+        </span>
+
+        <span sec:authorize="isFullyAuthenticated()">
+          <a th:href="@{/account}" class="mx-2">My Account</a>
+        </span>
       </div>
     </div>
   </div>

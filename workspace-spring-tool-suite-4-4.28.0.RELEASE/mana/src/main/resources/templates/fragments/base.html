@@ -1,38 +1,64 @@
-<div th:fragment="navbar(searchForm, advertCategories)">
-	<nav class="navbar navbar-expand-sm">
-		<div class="container-fluid ">
-			<a class="navbar-brand" th:href="@{/}">MANA</a>
-			<ul class="navbar-nav me-auto">
-				<li class="nav-item">
-					<a class="nav-link" th:href="@{/}">Home</a>
-				</li>
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
 
-				<li sec:authorize="!isFullyAuthenticated()" class="nav-item">
-					<a class="nav-link" th:href="@{/login}">Login</a>
-				</li>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Base</title>
 
-				<li sec:authorize="isFullyAuthenticated()" class="nav-item">
-					<a class="nav-link" th:href="@{/account}">My Account</a>
-				</li>
-			</ul>
+	<!-- Link obtained in https://cdnjs.com/libraries/bootswatch -->
+	<!-- See more themes in https://bootswatch.com/ -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.3/cerulean/bootstrap.min.css"
+		integrity="sha512-vaImhtQoaCXvevCM/UK+8ND/df0kiQWLtR65wgq0AWShEXLpWHMve0oGgU0q1gq1MbbyEuAhMMlqNmZd7s7wTQ=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
 
-			<form th:action="@{/search}" th:object="${searchForm}" class="d-flex" th:method="get">
-				<input type="text" th:field="*{query}" placeholder="Search" class="form-control me-2">
-				<select th:field="*{category}" class="form-control">
-					<option selected th:text="All" th:value="0" class="dropdown-item"></option>
-					<option th:each="advertCategory : ${advertCategories}" th:text="${advertCategory.name}" th:value="${advertCategory.ID}" class="dropdown-item"></option>
-				</select>
-				<input type="submit" value="Search" class="btn btn-primary" />
-			</form>
+<body>
+	<div th:fragment="navbar(searchForm, advertCategories)">
+		<nav class="navbar navbar-expand-lg bg-body-tertiary">
+			<div class="container-fluid">
+				<a class="navbar-brand" th:href="@{/}">MANA</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler"
+					aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarToggler">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item">
+							<a class="nav-link" th:href="@{/}">Home</a>
+						</li>
 
-		</div>
-	</nav>
-</div>
+						<li sec:authorize="!isFullyAuthenticated()" class="nav-item">
+							<a class="nav-link" th:href="@{/login}">Login</a>
+						</li>
 
-<div th:fragment="footer">
-	<div class="container-fluid ">
-		<footer class="py-3 my-4">
-			<p class="text-center text-body-secondary border-top">All Rights Reserved</p>
-		</footer>
+						<li sec:authorize="isFullyAuthenticated()" class="nav-item">
+							<a class="nav-link" th:href="@{/account}">My Account</a>
+						</li>
+					</ul>
+
+					<form th:action="@{/search}" th:object="${searchForm}" th:method="get" class="d-flex" role="search">
+						<input th:field="*{query}" type="search" placeholder="Search" class="form-control me-2">
+						<select th:field="*{category}" class="form-select me-2">
+							<option selected th:text="All" th:value="0" class="dropdown-item"></option>
+							<option th:each="advertCategory : ${advertCategories}" th:text="${advertCategory.name}"
+								th:value="${advertCategory.ID}" class="dropdown-item"></option>
+						</select>
+						<input type="submit" value="Search" class="btn btn-primary" />
+					</form>
+				</div>
+			</div>
+		</nav>
 	</div>
-</div>
+
+	<div th:fragment="footer">
+		<div class="container-fluid ">
+			<footer class="py-3 my-4">
+				<p class="text-center text-body-secondary border-top">All Rights Reserved</p>
+			</footer>
+		</div>
+	</div>
+</body>
+
+</html>

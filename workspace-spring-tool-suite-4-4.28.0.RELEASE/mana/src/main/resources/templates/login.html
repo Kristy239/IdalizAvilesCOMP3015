@@ -22,38 +22,45 @@
 		</div>
 	</div>
 
-	<div class="container mb-5 mt-5">
+	<div class="container mb-5">
 		<div class="row justify-content-center">
 			<div class="col-md-6 text-center">
-				<h4>Create an account so you can enjoy all MANA Advertisement features such as making your own cars and
+				<h4>Log in to your account so you can enjoy all MANA Advertisement features such as making your own cars
+					and
 					houses advertisements...</h4>
 			</div>
 		</div>
 	</div>
 
-	<div class="container w-50 rounded-3 py-3 ">
+	<div class="container w-50 rounded-3">
 		<div class="w-auto">
+			<div th:if="${param.error != null && param.error}" class="alert alert-danger" role="alert">
+				Incorrect username or password
+			</div>
 			<form th:action="@{/login}" method="post">
-				<!-- Email input -->
+				<!-- Username input -->
 				<div data-mdb-input-init class="form-outline mb-4">
 					<label for="username" class="form-label">Username</label>
-					<input name="username" type="text" class="form-control" autofocus required />
+					<input name="username" type="text" class="form-control" aria-describedby="usernameHelp" required pattern="^\S+$"/>
+					<div id="usernameHelp" class="form-text">Username must not contain spaces</div>
 				</div>
 
 				<!-- Password input -->
 				<div data-mdb-input-init class="form-outline mb-4">
 					<label for="password" class="form-label">Password</label>
-					<input name="password" type="password" class="form-control" required />
+					<input name="password" type="password" minlength="8" maxlength="20" class="form-control"
+						aria-describedby="passwordHelp" required
+						pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$" />
+					<div id="passwordHelp" class="form-text">Passwords must be 8 to 20 characters long with at least one
+						number and one special character</div>
 				</div>
-
-				<a text="Cancel" th:ref="@{/}"></a>
-
 				<input type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4"
 					text="Log In" />
+			</form>
 
-				<div class="container">
-					<a th:href="@{/register}">Register</a>
-				</div>
+			<form th:action="@{/register}" th:method="get">
+				<input type="submit" value="Register" data-mdb-button-init data-mdb-ripple-init
+					class="btn btn-success btn-block mb-4" />
 			</form>
 		</div>
 	</div>

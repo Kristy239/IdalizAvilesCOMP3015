@@ -53,18 +53,14 @@
 				<input name="image" type="file" th:field="*{image}" accept="image/*" class="form-control">
 			</div>
 
-			<div class="input-group">
+			<div class="input-group mb-3">
 				<label for="description" class="input-group-text">Description</label>
 				<textarea name="description" th:field="*{description}" maxlength="1000" class="form-control"></textarea>
 			</div>
 
-			<div class="input-group">
-				<input type="submit" />
+			<div class="input-group mb-3">
+				<input type="submit" class="btn btn-primary" />
 			</div>
-		</form>
-
-		<form th:if="${method} == 'put'" th:action="'/advert/' + ${formData.ID}" th:method="delete">
-			<input type="submit" class="btn btn-danger" value="Delete" />
 		</form>
 	</div>
 

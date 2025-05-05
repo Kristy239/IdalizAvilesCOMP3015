@@ -19,14 +19,13 @@
 	<div class="container mb-5 mt-5">
 		<div class="row justify-content-center">
 			<div class="col-md-6 text-center">
-				<h1>Results<span th:unless="${selectedAdvertCategory} == null"
-						th:text="' for ' + ${selectedAdvertCategory.name}"></span></h1>
+				<h1>Results</h1>
 			</div>
 		</div>
 	</div>
 
 	<div class="container">
-		<div th:each="advert : ${adverts}" class="card mb-3">
+		<div th:if="${adverts.size > 0}" th:each="advert : ${adverts}" class="card mb-3">
 			<div class="row g-0">
 				<div class="col-md-4">
 					<img th:src="@{${advert.imageBase64}}" class="img-fluid rounded-start" alt="...">
@@ -34,11 +33,23 @@
 				<div class="col-md-8">
 					<div class="card-body">
 						<h5 th:text="${advert.title}" class="card-title"></h5>
-						<p th:text="${advert.cost}" class="card-text"></p>
-						<a th:href="@{'/advert/' + ${advert.ID}}">More Details</a>
+
+						<div class="input-group mb-3">
+							<label for="cost" class="input-group-text">Cost: $</label>
+							<input name="cost" type="number" th:value="*{advert.cost}" class="form-control"
+								aria-label="Dollar amount (with dot and two decimal places)" readonly>
+						</div>
+
+						<form th:action="@{'/advert/' + ${advert.ID}}" th:method="get">
+							<input type="submit" value="More Details" class="btn btn-primary"/>
+						</form>
 					</div>
 				</div>
 			</div>
+		</div>
+
+		<div th:if="${adverts.size == 0}" class="d-flex justify-content-center">
+			<h1 class="alert alert-warning">Error. No search results found</h1>
 		</div>
 	</div>
 
