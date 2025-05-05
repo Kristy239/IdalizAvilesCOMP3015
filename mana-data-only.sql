@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `mana` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `mana`;
 -- MySQL dump 10.13  Distrib 8.0.42, for Win64 (x86_64)
 --
 -- Host: localhost    Database: mana
@@ -18,31 +16,6 @@ USE `mana`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `advert`
---
-
-DROP TABLE IF EXISTS `advert`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `advert` (
-  `ID` int unsigned NOT NULL AUTO_INCREMENT,
-  `Title` varchar(50) NOT NULL,
-  `Description` varchar(1000) NOT NULL,
-  `Cost` decimal(12,2) unsigned NOT NULL,
-  `Image` longblob,
-  `ImageContentType` varchar(100) DEFAULT NULL,
-  `Owner` int unsigned NOT NULL,
-  `Category` int unsigned NOT NULL,
-  PRIMARY KEY (`ID`),
-  UNIQUE KEY `ID_UNIQUE` (`ID`),
-  KEY `Category_idx` (`Category`),
-  KEY `Owner_idx` (`Owner`),
-  CONSTRAINT `Category` FOREIGN KEY (`Category`) REFERENCES `advertcategory` (`ID`),
-  CONSTRAINT `Owner` FOREIGN KEY (`Owner`) REFERENCES `user` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `advert`
 --
 
@@ -55,22 +28,6 @@ INSERT INTO `advert` VALUES (5,'2015 Hyundai Elantra','Cheap 2015 Hyundai. 97,00
 UNLOCK TABLES;
 
 --
--- Table structure for table `advertcategory`
---
-
-DROP TABLE IF EXISTS `advertcategory`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `advertcategory` (
-  `ID` int unsigned NOT NULL AUTO_INCREMENT,
-  `Name` varchar(100) NOT NULL,
-  PRIMARY KEY (`ID`),
-  UNIQUE KEY `Name_UNIQUE` (`Name`),
-  UNIQUE KEY `ID_UNIQUE` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Dumping data for table `advertcategory`
 --
 
@@ -79,28 +36,6 @@ LOCK TABLES `advertcategory` WRITE;
 INSERT INTO `advertcategory` VALUES (3,'Car for Sale'),(2,'House for Rent'),(1,'House for Sale');
 /*!40000 ALTER TABLE `advertcategory` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `user`
---
-
-DROP TABLE IF EXISTS `user`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user` (
-  `ID` int unsigned NOT NULL AUTO_INCREMENT,
-  `Username` varchar(32) NOT NULL,
-  `Name` varchar(50) NOT NULL,
-  `LastName` varchar(100) NOT NULL,
-  `DateOfBirth` date NOT NULL,
-  `Password` varchar(255) NOT NULL,
-  `Email` varchar(100) NOT NULL,
-  `PhoneNumber` varchar(15) DEFAULT NULL,
-  PRIMARY KEY (`ID`),
-  UNIQUE KEY `ID_UNIQUE` (`ID`),
-  UNIQUE KEY `Username_UNIQUE` (`Username`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `user`
@@ -121,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-04 19:13:20
+-- Dump completed on 2025-05-04 19:14:47
